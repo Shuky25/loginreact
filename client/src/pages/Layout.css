@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding: 10px 0;
+    background-color: rgb(50, 81, 105);
+}
+
+nav .toggle {
+    color: #fff;
+    font-size: 30px;
+    margin-right: 50px;
+    display: none;
+    width: 30px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+nav .toggle img {
+    max-width: 30px;
+    margin: auto;
+    display: block;
+}
+
+
+nav img {
+    width: 150px;
+}
+
+nav ul {
+    text-align: center;
+}
+
+
+nav ul li {
+    display: inline-block;
+    margin: 10px 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: .2s;
+}
+
+nav ul li a:hover {
+    color: #a7a7a7;
+    cursor: pointer;
+}
+
+nav .dugme {
+    margin-right: 100px;
+    border: 2px solid rgb(82, 120, 179);
+    border-radius: 10px;
+    padding: 10px 20px;
+    background-color: rgb(82, 120, 179);
+    text-decoration: none;
+    font-weight: bold;
+    color: #fff;
+    transition: .2s;
+}
+
+nav .dugme:hover {
+    background-color: rgb(50, 81, 105);
+    color:#fff;
+}
+
+@media screen and (max-width: 850px) {
+    nav .dugme {
+        display: none;
+    }
+
+    nav .toggle {
+        display: block;
+        z-index: 1;
+    }
+
+    nav ul {
+        display: none;
+    }
+
+    nav #mala-navigacija {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        background-color: rgb(50, 81, 105);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+    }
+}
