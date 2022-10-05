@@ -16,6 +16,26 @@ let con = db.createConnection({
     database: "reactlogin"
 });
 
+app.post('/register', (req, res) => {
+    let usernameReg = req.body.usernameReg;
+    let passwordReg = req.body.passwordReg;
+
+    con.query(
+        "INSERT INTO users VALUES (?, ?)",
+        [usernameReg, passwordReg],
+        (err, result) => {
+            /*if (err)
+                res.send({err: err});
+
+            if (result.length > 0)
+                res.send(result);
+            else
+                res.send({message: "Niste se uspesno prijavili"});*/
+            console.log(err);
+        }
+    )
+});
+
 app.post('/login', (req, res) => {
     let username = req.body.username;
     let password = req.body.password;

@@ -37,6 +37,9 @@ const Layout = () => {
           <li>
             <Link to="/about">O nama</Link>
           </li>
+          <li>
+            <Link to="/register">Registruj se</Link>
+          </li>
         </ul>
         <Link className="dugme" to="/login">Login</Link>
         {/*<FaBars onClick={toggle} className="toggle" />
