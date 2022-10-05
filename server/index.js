@@ -2,6 +2,9 @@ let express = require('express');
 let db = require('mysql');
 let cors = require('cors');
 
+let bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 let port = 3001;
 
 let app = express();
@@ -20,20 +23,19 @@ app.post('/register', (req, res) => {
     let usernameReg = req.body.usernameReg;
     let passwordReg = req.body.passwordReg;
 
-    con.query(
-        "INSERT INTO users VALUES (?, ?)",
-        [usernameReg, passwordReg],
-        (err, result) => {
-            /*if (err)
-                res.send({err: err});
+    bcrypt.hash(passwordReg, saltRounds, (err, hash) => {
 
-            if (result.length > 0)
-                res.send(result);
-            else
-                res.send({message: "Niste se uspesno prijavili"});*/
+        if (err)
             console.log(err);
-        }
-    )
+
+        con.query(
+            "INSERT INTO users VALUES (?, ?)",
+            [usernameReg, hash],
+            (err, result) => {
+                console.log(err);
+            }
+        );
+    });
 });
 
 app.post('/login', (req, res) => {
