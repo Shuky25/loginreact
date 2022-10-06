@@ -38,23 +38,53 @@ app.post('/register', (req, res) => {
     });
 });
 
-app.post('/login', (req, res) => {
-    let username = req.body.username;
-    let password = req.body.password;
+// app.post('/login', (req, res) => {
+//     let username = req.body.username;
+//     let password = req.body.password;
+
+//     con.query(
+//         "SELECT * FROM users WHERE username = ?", 
+//         [username],
+//         (err, result) => {
+//             if (err)
+//                 res.send({err: err});
+
+//             if (result.length > 0){
+//                 res.send(result);
+//             }
+//             else
+//                 res.send({message: "Pogresan username/password, pokusaj ponovo!"});
+//         }
+//     )
+// });
+
+app.post("/login", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
 
     con.query(
-        "SELECT * FROM users WHERE username = ? AND password = ?", 
-        [username, password],
+        "SELECT * FROM users WHERE username = ?;",
+        username,
         (err, result) => {
-            if (err)
-                res.send({err: err});
+            if (err) {
+                res.send({ err: err });
+            }
 
-            if (result.length > 0)
-                res.send(result);
-            else
-                res.send({message: "Pogresan username/password, pokusaj ponovo!"});
+            if (result.length > 0) {
+                bcrypt.compare(password, result[0].password, (error, response) => {
+                    if (response) {
+                        //req.session.user = result;
+                        //console.log(req.session.user);
+                        res.send(result);
+                    } else {
+                        res.send({ message: "Pogresan username/password!" });
+                    }
+                });
+            } else {
+                res.send({ message: "Korisnik ne postoji!" });
+            }
         }
-    )
+    );
 });
 
 app.listen(port, () => {

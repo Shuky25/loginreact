@@ -1,7 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
 import './Layout.css';
 import Logo from '../img/logo.png';
-import { FaBars, FaTimes } from 'react-icons/fa';
 import { useState } from "react";
 import spanSlika from '../img/navbar/span.png';
 import xSlika from '../img/navbar/x.png';
@@ -17,8 +16,8 @@ const Layout = () => {
     console.log(document.querySelector('ul').id);
   }
 
-  let X = <img src={spanSlika}  />;
-  let O = <img src={xSlika}  />;
+  let X = <img src={spanSlika} alt="spanSlika" />;
+  let O = <img src={xSlika} alt="xSlika" />;
 
   return (
     <>
@@ -42,8 +41,6 @@ const Layout = () => {
           </li>
         </ul>
         <Link className="dugme" to="/login">Login</Link>
-        {/*<FaBars onClick={toggle} className="toggle" />
-        <FaTimes className="x"/>*/}
         <button className="toggle" id={state ? "hidden" : ""} onClick={toggle}>{state ? O : X}</button>
       </nav>
       

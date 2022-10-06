@@ -18,7 +18,7 @@ const Contact = () => {
 			} else {
 				setLoginStatus("Dobrodosao, " + response.data[0].username);
 			}
-		});		
+		});
 	}
 
 	return (
